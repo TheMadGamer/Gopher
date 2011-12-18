@@ -1,0 +1,89 @@
+<h1 id="heyzap_ios_sdk">Heyzap iOS SDK</h1>
+
+<p>The Heyzap iOS SDK is a collection of methods and graphics that allows developers to easily integrate Heyzap checkin functionality into their games. It is distributed as a framework with header files, containing a bundle with graphics used in the SDK. The primary use case is a checkin button that can be added as a UIView anywhere in an app. When pressed, it either jumps directly to the Heyzap app and allows the user to check in, or displays a screen explaining what Heyzap does and linking the user to the App store to download and install Heyzap. This checkin functionality can also be called without the use of a button from any view in an app.</p>
+
+<h2 id="installation">Installation</h2>
+
+<ol>
+<li>Download the framework from http://www.heyzap.com/mobile/sdk</li>
+<li>Extract the framework file into your project directory</li>
+<li>Navigate to the &#8220;Build Phases&#8221; section for your project&#8217;s active target.</li>
+<li>Under &#8220;Link Binary With Libraries&#8221; - click the &#8220;+&#8221; button, choose &#8220;Add Other&#8221; and select the file &#8220;HeyzapIOSSDK.framework&#8221; from your project&#8217;s directory</li>
+<li>Under &#8220;Copy Bundle Resources&#8221; - click the &#8220;+&#8221; button, click &#8220;Add Other&#8221;, and select the file &#8220;Heyzap.bundle&#8221; from inside the HeyzapIOSSDK.framework folder.
+<img src="readme-images/build-settings.png" alt="Build Settings Example" title=""></li>
+<li>Ensure your app has an App Store Id. This is a large number assigned to your app in iTunes Connect by Apple. You can get an app store id by completing all the steps necessary to submit an app short of uploading a binary.</li>
+<li>Ensure your app can be opened by a custom url scheme. The process for this is simple and is described in Apple&#8217;s documentation  <a href="http://developer.apple.com/library/ios/#documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/StandardBehaviors/StandardBehaviors.html#//apple_ref/doc/uid/TP40007072-CH4-SW7">here</a>. The short version is that the Info.plist file in an app must have a &#8220;URL types&#8221; value with at least one item, which itself has at least one &#8220;URL Schemes&#8221; item whose value is the scheme the app will respond to. See the attached picture for an example.
+<img src="readme-images/url-scheme.png" alt="URL Scheme Example" title=""></li>
+<li><p>Add the following line to your application delegate header file:</p>
+
+<blockquote>
+  <p><code>#import &lt;HeyzapIOSSDK/HeyzapIOSSDK.h&gt;</code></p>
+</blockquote></li>
+<li><p>In the app&#8217;s application delegate, under application:didFinishLaunchingWithOptions:, add a line initializing the Heyzap SDK singleton:</p>
+
+<blockquote>
+  <p><code>// Leave out the curly brackets when inserting your app store id and app url</code> <br>
+<code>[HeyzapSDK initWithAppId:@"{app store id number}" appURL:@"{app launch url}"];</code></p>
+</blockquote></li>
+<li><p>Somewhere in your app, insert a UIView of type HeyzapCheckinButtonText. You can do this in Interface Builder by adding a UIView, then changing its class type to <code>HeyzapCheckinButtonText</code>. The dimensions as specified below are in points, or pixels for non-retina devices. You can resize the view, but it is recommended you keep the same width / height ratio so the image is not distorted. Note that Interface Builder will not display the checkin image in the view preview - this is normal, and the image will appear when the application is run.</p>
+
+<p><strong>HeyzapCheckinButtonText</strong> (126x54) <br>
+<img src="readme-images/sdk-icon-checkin.png" alt="HeyzapCheckinButtonText" title="HeyzapCheckinButtonText"></p></li>
+<li><p>Done! Everything from here will be taken care of.</p></li>
+</ol>
+
+<h2 id="advanced_usage">Advanced Usage</h2>
+
+<h3 id="smaller_button">Smaller button</h3>
+
+<p>In addition to the checkin button with text, there is another button which fits in a square viewing area and has no text. The process for using it is the same as the normal checkin button, but instead of using the <code>HeyzapCheckinButtonText</code> class, use the <code>HeyzapCheckinButton</code> class. Be sure to provide users with context, so they know without hitting it what the button will do.</p>
+
+<p><strong>HeyzapCheckinButton</strong> (55x55) <br>
+<img src="readme-images/sdk-icon.png" alt="HeyzapCheckinButton" title="HeyzapCheckinButton"></p>
+
+<h3 id="check_in_message">Check-in message</h3>
+
+<p>You can pre-fill the checkin message that users will check in to your app with by setting the checkinMessage property on the HeyzapSDK singleton. This is useful if you want the checkin to indicate a specific achievement in the game, such as beating a level or achieving a high score. The following example shows how to do this:</p>
+
+<pre><code>// Leave out the curly braces when specifying your checkin message
+[[HeyzapSDK sharedHeyzap] setCheckinMessage:@"I just beat level 9 on The Example Game!"];
+</code></pre>
+
+<p>Once you have set check-in text, it will remain for any further check-ins until it is set back to <code>@""</code> - be sure to set the message each time before showing a checkin button if different buttons will have different messages.</p>
+
+<h3 id="manual_check_in">Manual check-in</h3>
+
+<p>Alternatively, if you would prefer not to use one of the provided checkin buttons, you can initiate a checkin from anywhere in your app by calling the following line from one of your view controllers:</p>
+
+<pre><code>// Any view currently on screen may be used here
+[[HeyzapSDK sharedHeyzap] heyzapCheckin:self.view];
+</code></pre>
+
+<h3 id="image_resources">Image resources</h3>
+
+<p>If you want to use the images in the Heyzap SDK, you can access them through the bundle added to the build process. Here are the two checkin button graphics.</p>
+
+<pre><code>[UIImage imageNamed:@"Heyzap.bundle/sdk-icon.png"]
+[UIImage imageNamed:@"Heyzap.bundle/sdk-icon-checkin.png"]
+</code></pre>
+
+<h3 id="success_callbacks">Success callbacks</h3>
+
+<p>If you want to know whether a user checked in and/or posted to Facebook through Heyzap, you can determine that via the url your app is opened with. The Heyzap app will append three query string parameters to the URL:</p>
+
+<ul>
+<li>success - 1 if the user checked in, 0 if they did not for any reason</li>
+<li>facebook - 1 if the user posted their checkin to facebook, 0 if they did not</li>
+<li>twitter - 1 if the user posted their checkin to twitter, 0 if they did not</li>
+</ul>
+
+<p>So, if a user checks in and posts to facebook but not twitter, and your specified url scheme is testapp://open, then the url your app will be opened with will look like this:</p>
+
+<pre><code>testapp://open?success=1&amp;facebook=1&amp;twitter=0
+</code></pre>
+
+<h2 id="questions">Questions?</h2>
+
+<p>If you have any questions, feel free to email us at <a href="&#109;&#x61;&#105;&#x6C;&#116;&#111;:s&#x75;&#112;p&#x6F;&#114;&#116;&#64;&#x68;&#x65;&#x79;&#122;&#97;&#112;&#46;&#99;&#111;&#x6D;">s&#x75;&#112;p&#x6F;&#114;&#116;&#64;&#x68;&#x65;&#x79;&#122;&#97;&#112;&#46;&#99;&#111;&#x6D;</a></p>
+
+<p>Thanks, and good luck!</p>

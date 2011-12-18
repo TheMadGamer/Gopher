@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>group</key>
+		<true/>
+		<key>title</key>
+		<string>Campaign</string>
+	</dict>
+	<dict>
+		<key>bonus</key>
+		<true/>
+		<key>colorID</key>
+		<integer>2</integer>
+		<key>title</key>
+		<string>Ricochet 1</string>
+		<key>filename</key>
+		<string>Ricochet1.plist</string>
+	</dict>
+	<dict>
+		<key>bonus</key>
+		<true/>
+		<key>colorID</key>
+		<integer>2</integer>
+		<key>title</key>
+		<string>Ricochet 2</string>
+		<key>filename</key>
+		<string>Ricochet2.plist</string>
+	</dict>
+	<dict>
+		<key>bonus</key>
+		<true/>
+		<key>colorID</key>
+		<integer>2</integer>
+		<key>title</key>
+		<string>Ricochet 3</string>
+		<key>filename</key>
+		<string>Ricochet3.plist</string>
+	</dict>
+	<dict>
+		<key>bonus</key>
+		<true/>
+		<key>colorID</key>
+		<integer>2</integer>
+		<key>title</key>
+		<string>Ricochet 4</string>
+		<key>filename</key>
+		<string>Ricochet4.plist</string>
+	</dict>
+	<dict>
+		<key>bonus</key>
+		<true/>
+		<key>colorID</key>
+		<integer>2</integer>
+		<key>title</key>
+		<string>Ricochet 5</string>
+		<key>filename</key>
+		<string>Ricochet5.plist</string>
+	</dict>
+	<dict>
+		<key>bonus</key>
+		<true/>
+		<key>colorID</key>
+		<integer>2</integer>
+		<key>title</key>
+		<string>Ricochet 6</string>
+		<key>filename</key>
+		<string>Ricochet6.plist</string>
+	</dict>
+	<dict>
+		<key>bonus</key>
+		<true/>
+		<key>colorID</key>
+		<integer>2</integer>
+		<key>title</key>
+		<string>Ricochet 7</string>
+		<key>filename</key>
+		<string>Ricochet7.plist</string>
+	</dict>
+	<dict>
+		<key>bonus</key>
+		<true/>
+		<key>colorID</key>
+		<integer>2</integer>
+		<key>title</key>
+		<string>Ricochet 8</string>
+		<key>filename</key>
+		<string>RicochetSpin8.plist</string>
+	</dict>
+	<dict>
+		<key>bonus</key>
+		<true/>
+		<key>colorID</key>
+		<integer>2</integer>
+		<key>title</key>
+		<string>Ricochet 9</string>
+		<key>filename</key>
+		<string>Ricochet9.plist</string>
+	</dict>
+</array>
+</plist>

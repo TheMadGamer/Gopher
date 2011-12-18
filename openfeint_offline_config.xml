@@ -1,0 +1,21 @@
+<resources>
+<game_profile_page_info>
+  <has_chat_rooms>false</has_chat_rooms>
+  <short_name>GopherBOOM</short_name>
+  <has_challenges>true</has_challenges>
+  <suggestions_topic_id>285374</suggestions_topic_id>
+  <has_achievements>true</has_achievements>
+  <icon_url>/uploads/application_descriptions/h_icons/a4/28/f0/0f/35592/GGBOpenFeint.png</icon_url>
+  <has_leaderboards>false</has_leaderboards>
+  <has_featured_application>false</has_featured_application>
+  <has_ipurchase>true</has_ipurchase>
+  <name>Gopher Go Boom</name>
+  <timestamp>2010-11-03 00:35:16</timestamp>
+  <id>111304</id>
+  <is_owned_by_local_player>true</is_owned_by_local_player>
+</game_profile_page_info>
+<offline>
+<timestamp>2010-11-03 00:35:16</timestamp>
+</offline>
+
+</resources>
